@@ -31,14 +31,27 @@ function update_apt_packages
     echo "Updating packages"
     execute_cmd apt-get upgrade -y
 
-    echo "Insalling Git (Required)"
-    execute_cmd apt-get install -y git
 }
 
 function fetch_script_prerequisites
 {
+    echo "Insalling Git (Required)"
+    execute_cmd apt-get install -y git
+
 	echo "Fetching repo"
 	execute_cmd "git -C ~/.gbps-quick/ pull || git clone https://github.com/Gbps/gbps-quick-install ~/.gbps-quick/"
+}
+
+function install_git_configs
+{
+    echo "Installing Git Configs"
+    
+    execute_cmd git config --global user.email "gbps@ctf.re"
+    execute_cmd git config --global user.name "Michael"
+    execute_cmd git config --global push.default simple
+    execute_cmd git config --global core.editor "vim"    
+
+    echo "Done."
 }
 
 function update_hostname
@@ -133,6 +146,9 @@ function main
     
     printf "Install vim?"
     execute_yn install_vim
+
+    printf "Install git configs?"
+    execute_yn install_git_configs
 
     echo "Script done."
 }
