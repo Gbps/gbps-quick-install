@@ -103,27 +103,27 @@ function install_vim
 	execute_cmd apt-get install -y vim
 	
 	echo "Copying vimrc"
-	execute_cmd ln -s ~/.gbps-quick/vim/.vimrc ~/.vimrc
+	execute_cmd mv ~/.vimrc ~/.vimrc.bak
+    execute_cmd ln -s ~/.gbps-quick/vim/.vimrc ~/.vimrc
 
     echo "Done."
 }
 
-function install_ssh_keys
+function create_user
 {
+
     echo "Creating gbps user"
     execute_cmd adduser gbps
 
     echo "Adding gbps to sudo"
     execute_cmd adduser gbps sudo
+}
 
+function install_ssh_keys
+{
     echo "Copying ssh keys"
     execute_cmd mkdir /home/gbps/.ssh
     execute_cmd cp ~/.gbps-quick/ssh/authorized_keys /home/gbps/.ssh/authorized_keys
-
-    su gbps
-    printf "Install zsh?"
-    execute_yn install_zsh
-    exit
 
     echo "Done."
 }
@@ -141,7 +141,10 @@ function main
     printf "Update hostname?"
     execute_yn update_hostname
 
-    printf "Create gbps user and install ssh keys?"
+    printf "Create gbps user?"
+    execute_yn create_user
+
+    printf "Install ssh keys?"
     execute_yn install_ssh_keys
     
     printf "Install vim?"
