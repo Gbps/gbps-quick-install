@@ -62,21 +62,35 @@ function update_hostname
 function install_zsh
 {
     echo "Grabbing zsh"
-    execute_cmd sudo apt-get install zsh
+    execute_cmd sudo apt-get install zsh -y
 
     echo "Installing oh-my-zsh"
-    sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+    execute_cmd sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
     echo "Done."
 }
 
+function install_zsh_configs
+{
+    if [ ! -d ~/.oh-my-zsh ]; then
+        install_zsh
+    fi
+
+    echo "Installing zsh config"
+
+    execute_cmd mv ~/.zshrc ~/.zshrc.bak
+
+    execute_cmd ln -s ~/.gbps-quick/zsh/.zshrc ~/.zshrc
+    
+    echo "Done."
+}
 function install_vim
 {
 	echo "Installing vim"
 	execute_cmd apt-get install -y vim
 	
 	echo "Copying vimrc"
-	execute_cmd cp ~/.gbps-quick/vim/.vimrc ~/.vimrc
+	execute_cmd ln -s ~/.gbps-quick/vim/.vimrc ~/.vimrc
 
     echo "Done."
 }
@@ -102,9 +116,14 @@ function install_ssh_keys
 }
 function main
 {
-    update_apt_packages
+    printf "Update apt packages?"
+    execute_yn update_apt_packages
 
-    fetch_script_prerequisites
+    printf "Fetch script pre-requisites?"
+    execute_yn fetch_script_prerequisites
+
+    printf "Install zsh?"
+    execute_yn install_zsh_configs
 
     printf "Update hostname?"
     execute_yn update_hostname
