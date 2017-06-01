@@ -38,8 +38,12 @@ function fetch_script_prerequisites
     echo "Insalling Git (Required)"
     execute_cmd apt-get install -y git
 
-	echo "Fetching repo"
-	execute_cmd "git -C ~/.gbps-quick/ pull || git clone https://github.com/Gbps/gbps-quick-install ~/.gbps-quick/"
+    echo "Fetching repo"
+    execute_cmd "git -C ~/.gbps-quick/ pull || git clone https://github.com/Gbps/gbps-quick-install ~/.gbps-quick/"
+
+    echo "Fixing permissions"
+    REALUSER=$(stat -c '%U' ~)
+    execute_cmd chown -R $REALUSER:$REALUSER ~/.gbps-quick
 }
 
 function install_git_configs
@@ -99,11 +103,11 @@ function install_zsh_configs
 }
 function install_vim
 {
-	echo "Installing vim"
-	execute_cmd apt-get install -y vim
-	
-	echo "Copying vimrc"
-	execute_cmd mv ~/.vimrc ~/.vimrc.bak
+    echo "Installing vim"
+    execute_cmd apt-get install -y vim
+    
+    echo "Copying vimrc"
+    execute_cmd mv ~/.vimrc ~/.vimrc.bak
     execute_cmd ln -s ~/.gbps-quick/vim/.vimrc ~/.vimrc
 
     echo "Done."

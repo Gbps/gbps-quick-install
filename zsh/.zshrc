@@ -84,6 +84,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export TERM="xterm-256color"
+
 #################################################################
 
 # If antigen isn't installed, get it
@@ -120,5 +122,4 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( root_indicator status virtualenv context dir
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(  )
 
-
-
+alias gdb="gdb -q"
