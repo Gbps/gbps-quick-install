@@ -129,4 +129,4 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(  )
 alias gdb="gdb -q"
 
 # Automatically update the scripts in the background
-(zsh -c "cd ~/.gbps-quick/; git pull 1>/dev/null" &)
+(zsh -c "cd ~/.gbps-quick/; git pull 1>/dev/null" &) 
