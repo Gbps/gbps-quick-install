@@ -32,3 +32,6 @@ endif
 
 " :w!! writes out with sudo
 cmap w!! %!sudo tee > /dev/null %
+
+# F9 runs python script
+nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
