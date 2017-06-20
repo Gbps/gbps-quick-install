@@ -125,4 +125,8 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( root_indicator status virtualenv context dir
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(  )
 
+# GDB supress error messages
 alias gdb="gdb -q"
+
+# Automatically update the scripts in the background
+(zsh -c "cd ~/.gbps-quick/; git pull 1>/dev/null" &)
