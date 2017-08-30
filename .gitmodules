@@ -1,0 +1,3 @@
+[submodule "gnome-terminal-colors-monokai"]
+	path = gnome-terminal-colors-monokai
+	url = git://github.com/pricco/gnome-terminal-colors-monokai.git

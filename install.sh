@@ -35,7 +35,7 @@ function update_apt_packages
 
 function fetch_script_prerequisites
 {
-    echo "Insalling Git (Required)"
+    echo "Installing Git (Required)"
     execute_cmd apt-get install -y git
 
 	echo "Fetching repo"
@@ -106,6 +106,9 @@ function install_vim
 	execute_cmd mv ~/.vimrc ~/.vimrc.bak
     execute_cmd ln -s ~/.gbps-quick/vim/.vimrc ~/.vimrc
 
+    echo "Copying .vim directory"
+    execute_cmd cp -R ~/.gbps-quick/vim/.vim ~/.vim
+
     echo "Done."
 }
 
@@ -147,7 +150,7 @@ function main
     printf "Install ssh keys?"
     execute_yn install_ssh_keys
     
-    printf "Install vim?"
+    printf "Install vim configs?"
     execute_yn install_vim
 
     printf "Install git configs?"

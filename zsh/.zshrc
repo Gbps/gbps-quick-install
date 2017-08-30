@@ -1,3 +1,4 @@
+export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -120,5 +121,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( root_indicator status virtualenv context dir
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(  )
 
-
-
+################################################################
+mkdir ~/VM-CTFs/ 2>/dev/null
+vmhgfs-fuse .host:/CTFs/ ~/VM-CTFs/ 2>/dev/null
