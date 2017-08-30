@@ -65,6 +65,9 @@ let g:pymode_options_colorcolumn = 0
 " Prevents Jedi problems
 let g:pymode_rope_complete_on_dot = 0
 
+" Disable automatic folding
+set nofoldenable
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Simple, colorful statusline
