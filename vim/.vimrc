@@ -31,7 +31,10 @@ if has("autocmd")
 endif
 
 " F9 key executes python in new buffer
-nnoremap <buffer> <F9> :exec '!clear; python' shellescape(@%, 1)<cr>
+nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
+
+" F10 key runs 'make run'
+nnoremap <buffer> <F8> :exec '!clear; make run'<cr>
 
 " Adds cursor line to current window
 hi CursorLine   cterm=NONE ctermbg=8 ctermfg=NONE
