@@ -1,4 +1,6 @@
+# For tmux and friends
 export TERM="xterm-256color"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -85,6 +87,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export TERM="xterm-256color"
+
 #################################################################
 
 # If antigen isn't installed, get it
@@ -121,6 +125,8 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( root_indicator status virtualenv context dir
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(  )
 
-################################################################
-mkdir ~/VM-CTFs/ 2>/dev/null
-vmhgfs-fuse .host:/CTFs/ ~/VM-CTFs/ 2>/dev/null
+# GDB supress error messages
+alias gdb="gdb -q"
+
+# Automatically update the scripts in the background
+(zsh -c "cd ~/.gbps-quick/; git pull 1>/dev/null" &) 

@@ -5,5 +5,5 @@ New instance startup script for Ubuntu
 Remember kids: Always pipe shell scripts into elevated bash prompts.
 
 ```Install with wget
-sudo bash -c "$(wget https://github.com/Gbps/gbps-quick-install/blob/master/install.sh -O -)"
+sudo bash -c "$(wget https://raw.githubusercontent.com/Gbps/gbps-quick-install/master/install.sh -O -)"
 ```

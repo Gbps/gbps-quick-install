@@ -1,12 +1,5 @@
 #!/bin/bash
 echo "=============== Gbps Startup Script ==============="
-if [ "$EUID" -ne 0 ]
-then 
-    echo "Please run as root!"
-    echo "sudo $0" 
-    exit
-fi
-
 function execute_cmd
 {
     echo "> $@"
@@ -38,8 +31,12 @@ function fetch_script_prerequisites
     echo "Installing Git (Required)"
     execute_cmd apt-get install -y git
 
-	echo "Fetching repo"
-	execute_cmd "git -C ~/.gbps-quick/ pull || git clone https://github.com/Gbps/gbps-quick-install ~/.gbps-quick/"
+    echo "Fetching repo"
+    execute_cmd "git -C ~/.gbps-quick/ pull || git clone https://github.com/Gbps/gbps-quick-install ~/.gbps-quick/"
+
+    echo "Fixing permissions"
+    REALUSER=$(stat -c '%U' ~)
+    execute_cmd chown -R $REALUSER:$REALUSER ~/.gbps-quick
 }
 
 function install_git_configs
@@ -78,7 +75,7 @@ function install_zsh
     execute_cmd sudo apt-get install zsh -y
 
     echo "Installing oh-my-zsh"
-    execute_cmd sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+    sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
     echo "Done."
 }
@@ -99,11 +96,11 @@ function install_zsh_configs
 }
 function install_vim
 {
-	echo "Installing vim"
-	execute_cmd apt-get install -y vim
-	
-	echo "Copying vimrc"
-	execute_cmd mv ~/.vimrc ~/.vimrc.bak
+    echo "Installing vim"
+    execute_cmd apt-get install -y vim
+    
+    echo "Copying vimrc"
+    execute_cmd mv ~/.vimrc ~/.vimrc.bak
     execute_cmd ln -s ~/.gbps-quick/vim/.vimrc ~/.vimrc
 
     echo "Copying .vim directory"
