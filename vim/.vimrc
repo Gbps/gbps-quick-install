@@ -112,4 +112,11 @@ set modeline
 set modelines=5
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Color scheme plugin (lots of choices!)
+Plug 'flazz/vim-colorschemes'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
+
+" Defaulting to Monokai (Sublime color scheme)
+colorscheme Monokai
