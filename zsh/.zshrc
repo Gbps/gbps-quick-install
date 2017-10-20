@@ -133,3 +133,8 @@ alias gdb="gdb -q"
 
 # Always default to python3
 alias python=python3
+
+# Adds fzf file searching
+# Use Cntrl+T to fuzzy find files in the current or subdirectories
+# Must install beforehand or install using vimplug :PlugInstall
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

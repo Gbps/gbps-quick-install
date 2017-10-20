@@ -51,6 +51,15 @@ set mouse=a
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+
+" Set leader character to ;
+let mapleader = ";"
+
+" Open vsplits to the right of the current window
+" Open splits below the current window
+set splitright
+set splitbelow
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug definitions
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -59,17 +68,14 @@ call plug#begin('~/.vim/plugged')
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python syntax highlighting, format-checking
-Plug 'python-mode/python-mode'
-
-" Prevents the annoying red line
-let g:pymode_options_colorcolumn = 0
-
-" Prevents Jedi problems
-let g:pymode_rope_complete_on_dot = 0
-
-" Disable automatic folding
-set nofoldenable
+" " Python syntax highlighting, format-checking
+" Plug 'python-mode/python-mode'
+"
+" " Prevents the annoying red line from PEP
+" let g:pymode_options_colorcolumn = 0
+"
+" " Disable automatic folding
+" set nofoldenable
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -89,17 +95,18 @@ Plug 'tomtom/tcomment_vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" !!! BROKEN !!!
 " Python autocomplete and docstrings
 
-Plug 'davidhalter/jedi-vim'
-Plug 'ervandew/supertab'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'ervandew/supertab'
 
 " Enables supertab to tab complete after dot
-let g:SuperTabDefaultCompletionType = "context"
-let g:jedi#popup_on_dot = 0
+"let g:SuperTabDefaultCompletionType = "context"
+"let g:jedi#popup_on_dot = 0
 
 " Prevents Jedi docstring
-autocmd FileType python setlocal completeopt-=preview
+"autocmd FileType python setlocal completeopt-=preview
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -114,6 +121,47 @@ set modelines=5
 
 " Color scheme plugin (lots of choices!)
 Plug 'flazz/vim-colorschemes'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Fuzzy file finder!
+" Use ';;' to switch between buffers
+" Use ';t' to find files to open
+" Use ';r' to find tags (ctags)
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+
+nmap <Leader>; :Buffers<CR>
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :Tags<CR>
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Comment'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Constant'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'Comment'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Normal'] }
+
+" Use existing buffer if available
+let g:fzf_buffers_jump = 1
+
+" Command to generate tags
+" let g:fzf_tags_command = 'ctags -R'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
