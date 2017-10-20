@@ -60,6 +60,19 @@ let mapleader = ";"
 set splitright
 set splitbelow
 
+" Navigate between windows with control + arrow key
+nnoremap <silent> <C-Right> <c-w>l
+nnoremap <silent> <C-Left> <c-w>h
+nnoremap <silent> <C-Up> <c-w>k
+nnoremap <silent> <C-Down> <c-w>j
+
+" Create a split using control + shift + arrow key
+nnoremap <silent> <C-S-Down> :set splitbelow<CR>:split<CR>
+nnoremap <silent> <C-S-Up> :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+nnoremap <silent> <C-S-Left> :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+nnoremap <silent> <C-S-Right> :set splitright<CR>:vsplit<CR>
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug definitions
 """""""""""""""""""""""""""""""""""""""""""""""""""""
