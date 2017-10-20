@@ -97,6 +97,10 @@ function install_zsh_configs
 function install_vim
 {
     echo "Installing vim"
+
+    # Vim8 is not mainstream yet
+    execute_cmd add-apt-repository ppa:jonathonf/vim
+    execute_cmd apt-get update
     execute_cmd apt-get install -y vim
     
     echo "Copying vimrc"

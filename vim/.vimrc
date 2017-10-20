@@ -163,6 +163,7 @@ let g:fzf_buffers_jump = 1
 " Command to generate tags
 " let g:fzf_tags_command = 'ctags -R'
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
 
