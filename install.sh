@@ -94,11 +94,12 @@ function install_zsh_configs
     
     echo "Done."
 }
+
 function install_vim
 {
     echo "Installing vim"
 
-    # Vim8 is not mainstream yet
+    # Vim8 is not mainstream on 16.04 and below yet
     execute_cmd add-apt-repository ppa:jonathonf/vim
     execute_cmd apt-get update
     execute_cmd apt-get install -y vim
@@ -112,6 +113,19 @@ function install_vim
 
     echo "Done."
 }
+
+function install_tmux
+{
+    echo "Installing tmux"
+    
+    execute_cmd apt-get install -y tmux
+
+    echo "Copying tmux config"
+    execute_cmd ln -s ~/.gbps-quick/tmux/.tmux.conf ~/.tmux.conf
+
+    echo "Done."
+}
+
 
 function create_user
 {
@@ -153,6 +167,9 @@ function main
     
     printf "Install vim configs?"
     execute_yn install_vim
+
+    printf "Install tmux?"
+    execute_yn install_tmux
 
     printf "Install git configs?"
     execute_yn install_git_configs

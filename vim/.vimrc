@@ -31,10 +31,10 @@ if has("autocmd")
 endif
 
 " F9 key executes python in new buffer
-nnoremap <buffer> <F9> :exec '!clear; python3' shellescape(@%, 1)<cr>
+nnoremap <F9> :exec '!clear; python' shellescape(@%, 1)<cr>
 
 " F10 key runs 'make run'
-nnoremap <buffer> <F8> :exec '!clear; make run'<cr>
+nnoremap <F8> :exec '!clear; make run'<cr>
 
 " Adds cursor line to current window
 hi CursorLine   cterm=NONE ctermbg=8 ctermfg=NONE
@@ -176,8 +176,19 @@ let g:fzf_buffers_jump = 1
 " Command to generate tags
 " let g:fzf_tags_command = 'ctags -R'
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Helps generate tmux.conf files to match vim status lines
+" Run :Tmuxline lightline
+Plug 'edkolev/tmuxline.vim'
+
+let g:tmuxline_preset = {
+      \'y'    : '#H',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W'}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 call plug#end()
 
 " Defaulting to Monokai (Sublime color scheme)
