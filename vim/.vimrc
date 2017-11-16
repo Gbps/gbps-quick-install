@@ -108,18 +108,11 @@ Plug 'tomtom/tcomment_vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" !!! BROKEN !!!
-" Python autocomplete and docstrings
-
-"Plug 'davidhalter/jedi-vim'
-"Plug 'ervandew/supertab'
+" Simple autocomplete on tab
+Plug 'ervandew/supertab'
 
 " Enables supertab to tab complete after dot
-"let g:SuperTabDefaultCompletionType = "context"
-"let g:jedi#popup_on_dot = 0
-
-" Prevents Jedi docstring
-"autocmd FileType python setlocal completeopt-=preview
+let g:SuperTabDefaultCompletionType = "context"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -130,6 +123,7 @@ Plug 'ARM9/arm-syntax-vim'
 " Enable modelines to declare ARM format
 set modeline
 set modelines=5
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Color scheme plugin (lots of choices!)
@@ -189,6 +183,23 @@ let g:tmuxline_preset = {
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Highlights and generates ctags
+
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+
+" Colors macros in green like functions
+highlight link cPreProcTag cFunctionTag
+
+" Always generate tags for members
+let g:easytags_include_members = 1
+
+" Quick command to update header tags in the current directory
+command! UpdateHeaders UpdateTags -R ./*.h
+
+" Automatically tag highlight new C files that enter a buffer
+autocmd FileType c,cpp HighlightTags
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
 
 " Defaulting to Monokai (Sublime color scheme)
