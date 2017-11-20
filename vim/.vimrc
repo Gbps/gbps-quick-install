@@ -189,7 +189,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 
 " Colors macros in green like functions
-highlight link cPreProcTag cFunctionTag
+" highlight link cPreProcTag cFunctionTag
 
 " Always generate tags for members
 let g:easytags_include_members = 1
