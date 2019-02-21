@@ -19,9 +19,6 @@ set shiftwidth=4
 " show the matching part of the pair for [] {} and ()
 set showmatch
 
-" enable all Python syntax highlighting features
-let python_highlight_all = 1 
-
 " soft tab stop on backspace
 set softtabstop=4
 
@@ -46,11 +43,6 @@ augroup END
 
 " Adds mouse support
 set mouse=a
-
-" Maximum line width and warning
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-
 
 " Set leader character to ;
 let mapleader = ";"
@@ -126,11 +118,6 @@ set modelines=5
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Color scheme plugin (lots of choices!)
-Plug 'flazz/vim-colorschemes'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Fuzzy file finder!
 " Use ';;' to switch between buffers
 " Use ';t' to find files to open
@@ -200,7 +187,18 @@ command! UpdateHeaders UpdateTags -R ./*.h
 " Automatically tag highlight new C files that enter a buffer
 autocmd FileType c,cpp HighlightTags
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Snazzy color theme
+Plug 'joshdick/onedark.vim'
+Plug 'connorholyday/vim-snazzy'
+
+" Vim language packs
+Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 
-" Defaulting to Monokai (Sublime color scheme)
-colorscheme Monokai
+let g:lightline = {
+  \ 'colorscheme': 'snazzy',
+  \ }
+
+colorscheme snazzy
